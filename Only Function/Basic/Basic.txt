@@ -1,0 +1,195 @@
+<--------Start-Basic idea
+
+Defination: Function is basically a set of statements that takes inputs,perfom some computation and produce output.
+
+syntax: Return_type funcation_name (set_of_inputs);
+
+     1. Return_type - the out put return by the function.
+       Ex: int , void.
+
+     2. funcation_name - the name of the function.
+        Ex: int function_Name().
+        like-- int main().
+
+     3. set_of_inputs - Input provided to the function.
+            Ex: int , .
+
+     4.Process(body){}//akib sir.
+     
+     NOTE:it is not necessary to provied the inputs without input it can perfome some computation and it can return some out put.
+        Return_type indecate the type of the out put.
+
+why Function : There are two impotant reasons.
+  
+   (1).Reusability:Once the is defined, it can be reused over and over again.
+
+   (2).Abstraction:If you are using the function in your program . then you don't have to worry how it works inside!
+
+    Example: scanf function.
+
+
+<--------Next-funcation declaration PART 1
+
+ What is the function Declaration:
+ =>As we already know,when we declare a variable,we need to declare its properties to the compiler.
+  For  Example: int var;
+
+   Properties:
+      1. Name of variable: var
+      2. Type of variable: int
+
+ Similarly,funcation declaration (also called funcation prototype)means declaring the properties of a funcation to the compiler.
+
+ For  Example: int fun(int, char);
+
+
+  Properties:
+       1.Name of function: fun.
+       2.Return type of function: int.
+       3.Number of parameters: 2. Ex Type of parameter 1: int,  Type of parameter 2: char.
+      
+
+ Important TakeAway: It is not necessary to put the name of the parameter in funcation prototype.
+
+ For example: int fun(int var1, char var2);
+
+NOTE: 1.It's impotant to mention the name of the parameter in the function definition.
+
+2.It's not impotant to mention the name of the parameter in the function declaration.
+
+Let consider one example of function declaration:
+
+#include <stdio.h>
+char fun()
+{
+   return 'a';
+}
+
+int main()
+{
+   char c = fun();
+   printf("charcter %c", c);
+}
+
+
+<--------Next-funcation declaration PART 2
+
+ Is it Always Neceeary to declare the funcation before using it?
+
+ Not Neceeary But it is preferred to declare the  funcation before using it.
+
+ what happens when we use the funtion before declaration it?
+
+#include <stdio.h>
+int main()
+{
+   char c = fun();
+   printf("charcter %c", c);
+}
+
+char fun();
+{
+   return 'a';
+}
+
+//In output it show an error
+
+ <--------Next-function definition
+
+ What is function definition?
+
+ Funtion definition consists of block of code which is capable of performing some specific task.
+
+for example: 
+int add(int a, int b){
+   int sum;
+   sum =a+b;
+   return sum;
+}
+------------
+
+#include <stdio.h>
+int add(int a, int b) //Parameter or Formal Parameters.
+{
+   return (a+b);
+}
+
+int add(int , int ); // there is no need to mention names of the parameters.
+
+int main()
+{
+   int m=20,n=30,sum;
+   sum=add(m,n); //Argument or Actual Parameters.
+   printf("sum is %d",sum);
+}
+
+----
+
+
+what is the difference between an argument and a parameter?
+
+Parameter:is a variable in the declaration of the function.
+
+Argument:is the value of the parameter that gets passed the function.
+
+NOTE-Parameter is also called as Formal Parameter and Argument is called is also called as Actual Parameters.
+
+ Actual Parameters:The parameter passed to the function.
+ Formal Parameters:The parameter received by a function.
+
+ exmpal : 
+
+ <--------Next-Recall
+
+ 1.Called by value: here value of actual parameters will be copied to formal parameters and these two difference parameters store values in different locations.
+
+for example:
+
+
+#include<stdio.h>
+int fun(int x,int y);//local variable
+{
+   x = 20;
+   y = 10;
+}
+int main(){
+int x = 10, y = 20;//orginal value
+fun(x,y);
+printf("x is %d, y is %d",x,y);
+}
+
+output: x = 10 , y = 20;
+
+In call by value procedure you smiply passing tha value to the variable not the variable it self.
+
+NOTE:Here both actual and formal parameters rafers to to some memory location.
+
+-------
+
+ 2.Called by Refferens:Here both actual and formal parameters rafers to some memory location.Therefore, any changes made to the formal parameters will get reflected to actual parameter.
+
+ Here instead of passing values,we pass address.
+
+for example:
+
+#include <stdio.h>
+int fun(int *ptr1, int *ptr2)
+{
+    *ptr1 = 20;
+    *ptr2 = 10;
+    printf("x= %d,y = %d", *ptr1, *ptr2);
+}
+
+int main()
+{
+    int x = 10, y = 20;
+    fun(&x, &y);
+}
+
+// we assume that &x address is 1000 and &x address is 2000.
+
+//in the int fun(int *ptr1, int *ptr2)// *prt1 is a specil variable call pointer.
+
+pointer:Are thouse variable how can store address .
+
+// Now in the *ptr1  &x  the address 1000 was stored and in the *ptr2  &x  the address 1000 was stored.
