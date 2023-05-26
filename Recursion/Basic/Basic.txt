@@ -1,0 +1,281 @@
+Definition--->
+Recursion:Recursion is a process in which a function call itself diriectly or indirectly.
+
+Example-1:
+#include <stdio.h>
+int fun(int n);
+int main()
+{
+    int n = 3;
+    printf("%d",fun(n));
+    return 0;
+}
+int fun(int n)
+{
+    if(n == 1){
+        return 1;
+    }
+    else{
+        return 1 + fun(n-1);
+    }
+}
+
+Base case : n = 1;
+
+sudo code:
+int fact(int n)
+{
+    if(n==1){   // 4 == 1 f; 3 == 1 f; 2 == 1 f; 1 == 1 t
+    return 1;
+    }
+    else{
+        n*fact(n-1); // 4*fact(3); 3*fact(2) ; 2*fact(1)
+    }
+}
+
+
+In this case: it create a universal loop whice calling fun into fun again and again.
+
+for exemple:
+     
+     factorial of : 5!= 5 * 4*3*2*1
+                        n * (n-1)!
+                        5 * 4!
+
+                    4!=4*3*2*1
+
+                    3!=3*2*1
+
+                    2!=2*1
+
+                    1!=1
+
+                    n!=n!*(n-1)!
+
+Now, we stop the recursive call useing base case.
+
+
+
+Example Problem:
+factorial of : 5!= 5 * 4*3*2*1
+                        n * (n-1)!
+                        5 * 4!
+
+ we can say that  factorial of n: n!= n * (n-1) 
+
+
+Example-2:
+#include <stdio.h>
+int fact(int n);
+int main()
+{
+    int n;
+    scanf("%d",&n);
+
+    int result = fact(n);
+    printf("Factrioal of %d is %d",n,result);
+}
+
+int fact(int n){
+     if (n==1){
+        return 1;
+     }
+    else{
+       return n*fact(n-1);
+    }
+}
+
+ manual tracing:
+  fun(3) -> return 1 + fun(2) -> return 1 + fun(1)-> return 1;
+
+  return 1 -> return 1 + fun(1) = return 2 -> return 1 + fun(2) = return 3 ;
+
+  output 3;
+
+--------->How to write Recursive Functions
+
+1. Divied the Problem into smaller sub-problrms.
+
+2.Specify the base condition to stdio.assert the Recursion.
+
+Problem:Calculate the factorial of a number.
+
+ Factrioal of 5: 5 X 4 X 3 X 2 X 1 = 120
+
+Basic Structure:
+Fact()
+{
+    if()     
+    {         
+        ...   // Base case 2.
+    }        
+    else
+    {       
+       ...   // Base case 1.
+    }       
+}
+
+1. Divied the Problem into smaller sub-problrms:
+          
+        Calculate Fact(4)
+
+        Fact(1) = 1
+        Fact(2) = 2 * 1 = 2 * Fact(1)
+        Fact(3) = 3 * 2 * 1 = 3 * Fact(2)
+        Fact(4) = 4 * 3 * 2 * 1 = 3 * Fact(3)
+
+        Fact(n) = n*fact(n-1);
+
+        basc condition is the one whice doesn't require to call the some function again and it helps in stopping the Recursion.
+
+Basic Structure:
+Fact()
+{
+    if()     
+    {         
+        return 1;
+    }        
+    else
+    {       
+       return n * Fact(n-1);
+    }       
+}
+
+--------->Types of Recursion Direct & Indirect 
+
+1.Direct recursion: A function is called Direct recursive
+if it calls the same function again.
+
+Structure of Direct recursion:
+
+fun(){
+
+    //some code
+
+    fun();
+
+    //some code
+}
+
+2.Indirect recursion: A function (let say fun)
+is called indirect recursive if it calls another function (let say fun2) and then fun2
+calls fun diriectly or indirectly
+
+Structure of Indirect recursion:
+
+fun(){
+    //some code 
+
+    fun2();
+
+    //some code
+}
+
+fun2(){
+    //some code 
+
+    fun();
+
+    //some code
+}
+
+Program to understand indirect recursion.
+
+Problem 1 - Wap to print number 1 to 10 in such a way that when number is odd, add 1 and when number is even, subtract 1.
+
+#inculde <stdio.h>
+void odd(int n);
+void even(int n);
+
+int main()
+{
+  for(int i=1;i<=10;i++)
+  {
+     if(i%2==0)
+    {
+     result = even(i);
+     print("%d",result);
+    }
+
+     if(i%2==0)
+    {
+    result = odd(i);
+    print("%d",result);
+    }
+  }
+ return 0;
+}
+
+
+void odd(int n)
+{
+   int add = n+1;
+}
+
+void even(int n)
+{
+   int add = n-1;
+}
+
+--------->Tail & Non-tail Recursion
+Tail Recursion:A recursive Functions is said to be tail recursive if the recursive call is the lost thing done by the function.There is no need to keep record of the previous state.
+
+Example:
+#include<stdio.h>
+void fun(int n)
+{
+    if(n==0)
+    {
+      return ;
+    }
+    else
+    {
+      printf("%d ",n);
+      return fun(n-1);
+    }
+}  
+int main()
+{
+    fun(3);
+    return 0;
+}
+
+Non-tail Recursion:A recursive Functions is said to be non-tail recursive if the recursive call is the lost thing done by the function.After returning back, there is some thing left to evloalute.
+
+Example:
+#include<stdio.h>
+void fun(int n)
+{
+    if(n==0)
+    {
+      return ;
+    }
+    
+    fun(n-1);
+    printf("%d ",n);
+
+}  
+int main()
+{
+    fun(3);
+    return 0;
+}
+
+Example:
+#include<stdio.h>
+int fun(int n)
+{
+    if(n == 1)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1 + fun(n/2);
+    }
+}
+
+int main(){
+    printf("%d",fun(8));
+    return 0;
+}
