@@ -1,0 +1,253 @@
+What is pointer :
+ Pointer is variable which capable to string  Initial address  of the object which it's want to point to.
+or,
+ Pointer is a variable that stores/points  the  address of another variable.
+
+syntax for declaring pointer variable->
+
+General syntax for declaring pointer variable:
+
+                   data_type *pointer_name/*var_name
+                     
+                       ^
+                       |
+        Here data type reafers to the type of the value
+        pointer will point to.
+
+Example : int *p;
+        or, char *p;
+
+Different type of pointer variable
+
+           int *ptr; <=== pointer to integer value.
+           char *ptr; <=== pointer to character value.
+           float *ptr; <=== pointer to float value.
+
+Need of addresses of operator:
+
+         1.Simply declaring a pointer is not enough.
+         2.it is important to Initialize pointer before use.
+         3.One way to Initialize a pointer is to assign address 
+         of some  variable.
+
+ -----2 symbol-----
+ "&" or addreess of Operator symbol is used to get the address of the variable . (address)
+
+ "*"symbol is used to get the value of the pointer is pointing to. (value
+
+ int x = 5;
+ int *ptr;    (this three line equivalent ) int x = 5 , *ptr = &x;
+ ptr = &x; 
+
+      printf("value of x =%d\n" , x);
+      printf ("Address of x=%d\n",&x);
+      printf ("Address of p=%d\n",ptr);
+      printf("content of p=%d\n",*ptr);
+
+----->Value of Operator in Pointers
+
+Value Operator/indirection operator/dereference operator is an operator that is used to access  the value stored at the location pointed by the pointer.
+
+example :
+            int x = 5 ;//We assume addreess of x is 1000
+            int *ptr; 
+            ptr = &x;//by Initializeing it in pointer we can access the Address OF X ,whice was 1000 
+
+            printf("%d",*ptr);//"*" is also call value of operator.... 
+            In this case it will take the value of object. whice was x.
+
+we can also change the value  of the object pointed by the pointer.
+
+for example:
+            int x = 10;
+            int *ptr = &x;
+            *ptr = 4;
+
+            printf("%d",*ptr);
+
+          ------>A word of caution<-----
+
+1. Never apply this indirection operator to the uninitialized pointer.
+
+for example:
+             int *ptr;
+             printf("%d", *ptr);
+
+why pointer ?
+
+2. Assigning value to the uninitialized pointer is dengerous.
+
+
+for example:
+             int *ptr;
+             *ptr = 1;
+
+output: Segmetaion Fault .
+
+Usually segmetaion fault is caused by porgram trying to read or wtite an illegal memory location.
+
+----->Why pointer?
+
+=>pointer are powerful features of c and (c++)porgramming that different it from other popular porgramming languages
+like:
+Java and Python.
+
+=>Using pointer makes the software more efiicinet cause it works with memory management.
+
+=>But Excessive usage may make the application less understandable.
+
+example:who to find Address.
+
+#include<stdio.h>
+int main()
+{ 
+        int x = 5;
+          
+        printf("value of x =%d\n",x);
+        printf("value of x =%d\n",&x);
+        printf("value of x =%d\n",&x);//.x for hexadecimal value.
+        printf("value of x =%u\n",&x);//u means unsing always memory address will be positive.
+
+}
+
+Use of pointer,,,
+
+#include <stdio.h>
+int main()
+{
+        int x = 5;
+        int *ptr;
+        ptr = &x;
+        
+        printf("%d\n",x);
+        printf("%u\n",&x);
+        printf("%u\n",ptr);
+        printf("%d\n",*ptr);
+        printf("%u\n",&ptr);
+}
+-----> pointer pointing to different variable
+//P1-declar and print variable by pointer.
+
+#include <stdio.h>
+int main()
+{
+        int x=10,y=20,z=30;
+
+        int *ptr;
+
+        ptr = &x;
+        printf("x = %d\n",*ptr);
+
+        ptr = &y;
+        printf("x = %d\n",*ptr);
+
+        ptr = &z;
+        printf("z = %d\n",*ptr);
+
+}
+
+//P2-sum of two pointers.
+#include <stdio.h>
+int main()
+{
+        int x=10,y=20,sum;
+
+        int *ptr1,*ptr2;
+
+        ptr1=&x;
+        ptr2=&y;
+
+        sum = *ptr1 + *ptr2 ;
+
+        printf("sum = %d\n",sum);
+        
+}
+
+//P3: swapping two numbers
+#include <stdio.h>
+int main()
+{
+        int x=10,y=20,temp;
+
+        int *ptr1,ptr2;
+
+        ptr1 = &x;
+        ptr2 = &y;
+
+        //swapping
+        temp = *ptr1 ;
+       *ptr1 = *ptr2 ;
+       *ptr2 = temp ;
+
+   printf("x = %d\n",x);
+   printf("y = %d\n",y);
+}
+
+//P4-swapping two numbers using pointer and function.
+#include <stdio.h>
+void swapping(int *ptr1,int *ptr2);
+int main()
+{
+        int x=10, y=20;
+
+        printf("Before swapping: x=%d , y=%d;\n",x,y);
+
+        swapping(&x,&y);
+
+        printf("After swapping:  x=%d , y=%d;\n",x,y);
+
+}
+void swapping(int *ptr1,int *ptr2){
+        int temp;
+
+        temp = *ptr1 ;
+       *ptr1 = *ptr2;
+       *ptr2 = temp;
+}
+//P5-Access array elements using pointer.
+#include <stdio.h>
+int main()
+{
+        int a[5] = {10,20,30,40,50};
+        int *ptr;
+
+        ptr = &a[0];
+
+        for(int i=0 ; i<5 ; i++)
+        {
+           printf("%d\n",*ptr);
+           ptr++;
+        }
+}
+//P6-Find the mid of the array.
+#include <stdio.h>
+int *findMid(int a[],int n){
+        return &a[n/2];
+}
+
+int main()
+{
+        int a[5] = {10,20,30,40,50};
+        int n = sizeof(a)/sizeof(a[0]);
+        int *mid = findMid(a,n);
+        printf("%d\n",*mid);
+        return 0;
+}
+Note never ever return the address of local variable or automatic variable;
+
+for Examole:
+#include <stdio.h>
+int *fun()
+{
+        int i=10;
+        return &i;
+}
+
+int main(){
+        int *p =fun();
+        printf("%d",*p);
+}
+
+>>warning:Function return address of local vaiable.
+
+---------
