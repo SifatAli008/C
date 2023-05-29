@@ -1,0 +1,340 @@
+Per1 information
+    name ="Xyz ab";
+     id = "111222333";
+section = C; 
+    Age = 20;
+
+write a Program for store all the information from Per1 in the c Program.
+
+for Per1Info
+char name[50] ="Xyz ab";
+int id[8] = "111222333";
+int section = C; 
+int Age = 20;
+
+for Per2Info
+char name[50] ="Abc mn";
+int id[8] = "111222334";
+int section = C; 
+int Age = 21;
+
+Now think about it .Is it a good idea store all
+this information in Separate variable ?
+
+Suppose we have 100 Persons Info now tore all
+this information in Separate variable is time 
+consuming As well as memory consuming. <---It is not a good idea at all.
+
+
+(USE OF Structure)------>
+
+Now some of you might think? 
+We can use array for this type of problem. But Array is also not a good option.Becouse array has the capabitility to store more than one elements but they all must be of some type.
+
+But Our requrirement is to store data of different types.
+
+    What happens if we can define our own type
+    which  can accomodate all the  require types?
+
+    for this type of problem Structure is one stop solution.
+
+
+Data Structures--->
+
+Definition:A Structures is a user defined data type that can be used to group elements of different types into a single type. 
+
+In short - Collection of variables of Differnt data type. 
+         - A Structure is a user defined data type.
+
+problem-1: show output for person1 and person2  salary and age.
+
+template : person 
+           char name[20]
+           float salary;
+           int age;
+
+syntax : 
+        struct person{
+                int age;
+                float slary;
+             };
+
+solution: In this case we can also access by any other function.
+
+           #include <stdio.h>
+           struct Person{          // person name datatype in Global scope.
+             int age;             // member of person data type
+             float salary;       // member of person data type
+           };
+           
+           int main()
+            struct Person person1,person2;                 // person1 and person2 can access all the members of 
+                                                           // the person data type.
+            person1.age = 27;                              //By useing "." dot operter person1 can useing the member.
+            person1.salary = 12750.50;
+           
+            printf("Person1 Age: %d\n", person1.age);
+            printf("Person1 Salary: %2f\n", person1.salary);         //print the value same way you access the members  
+                                                                     // by useing "." dot operter.
+           
+            //same way like person1 try to print for person2 by your self;
+           }
+
+(Global and Local Structure/variable)------>
+
+solution(BY Global structure) : In this case we can not also access by any other function.
+
+          #include <stdio.h>
+
+            struct Person{          
+             int age;            
+             float salary;     
+           };
+
+           int main(){
+            
+
+            struct Person person1,person2;                              
+            person1.age = 27;                                             
+            person1.salary = 12750.50;
+           
+            printf("Person1 Age: %d\n", person1.age);
+            printf("Person1 Salary: %2f\n", person1.salary);              
+           
+            //same way like person1 try to print for person2 by your self;
+           }
+
+solution(BY Local structure) : In this case we can not also access by any other function.
+
+          #include <stdio.h>
+
+           int main(){
+            
+            struct Person{          
+             int age;            
+             float salary;     
+           };
+
+            struct Person person1,person2;                              
+            person1.age = 27;                                             
+            person1.salary = 12750.50;
+           
+            printf("Person1 Age: %d\n", person1.age);
+            printf("Person1 Salary: %2f\n", person1.salary);              
+           
+            //same way like person1 try to print for person2 by your self;
+           }
+
+
+ Global variable:By declaring the variable this way. Now we can also access by any other function.
+
+          struct Person{          
+                         int age;            
+                         float salary;     
+                       }person1,person2;
+
+ //-----or-----
+            
+            struct Person{          
+                           int age;            
+                           float salary;     
+                         };
+
+            struct person person1,person2;  
+
+
+example:
+            #include <stdio.h>
+            struct Person{          
+                          int age;            
+                          float salary;     
+                        }person1,person2;
+
+
+            int main() {                            
+            person1.age = 27;                                             
+            person1.salary = 12750.50;
+           
+            printf("Person1 Age: %d\n", person1.age);
+            printf("Person1 Salary: %2f\n", person1.salary);              
+      
+           }
+
+(Input struct elements)--->
+
+Problem-1:
+              #include <stdio.h>
+            struct Person{          
+                          int age;            
+                          float salary;     
+                        }person1,person2;
+
+
+            int main() { 
+
+            printf("Enter age: ");
+            scanf("%d", &person1.age);
+             scanf("%d", &person2.age);
+
+            printf("Enter Salary: ");
+            scanf("%d", &person1.salary);
+            scanf("%d", &person2.salary);
+           
+            printf("Person1 Age: %d\n", person1.age);
+            printf("Person1 Salary: %2f\n", person1.salary);    
+
+             printf("Person2 Age: %d\n", person2.age);
+            printf("Person2 Salary: %2f\n", person2.salary);                        
+      
+           }
+
+(Initialize struct elements)--->
+
+Problem-1:
+             #include <stdio.h>
+            struct Person{          
+                          int age;            
+                          float salary;     
+                        };
+
+            int main() { 
+
+            struct Person person1 ={27,25550.25};
+
+            struct Person person2,person3;
+
+            person2.age =21;
+            person2.salary=21000.7;
+
+            person3 = person2;
+           
+            printf("Person1 Age: %d\n", person1.age);
+            printf("Person1 Salary: %2f\n", person1.salary);    
+
+             printf("Person3 Age: %d\n", person3.age);
+            printf("Person3 Salary: %2f\n", person3.salary);                        
+      
+           }
+
+(Comparison struct elements)--->
+
+Problem-1:comer person1 person and person2 are eqal or not;
+            #include <stdio.h>
+            struct Person{          
+                          int age;            
+                          float salary;     
+                        }person1,person2,person3;
+
+            int main() { 
+
+
+            printf("Enter age for person1,person2: ");
+            scanf("%d", &person1.age);
+            scanf("%d", &person2.age);
+
+            printf("Enter Salary for person1,person2: ");
+            scanf("%d", &person1.salary);
+            scanf("%d", &person2.salary);
+
+            person3 = person2;
+
+            if(person1.age==person2.age && person1.salary==person2.salary) {
+                printf("person1 is eqaual to person2");
+            }
+            
+            else {
+                  printf("person1 is not eqaual to person2");
+            }
+
+           }
+
+(Array of struct)--->
+
+Problem-2: take input for n  person name, salary ,age.
+
+          #include <stdio.h>
+           struct Person{
+                        char name[100];
+                        int age;
+                        float salary;
+                       };
+
+         int main()
+        {
+           int n;
+           printf("Enter the number of person name: ");
+           scanf("%d", &n);
+
+          struct Person person[n];
+
+          for (int i = 0; i < 3; i++)
+       {
+           printf("person %d\n", i + 1);
+        
+          printf("Name: ");
+          fflush(stdin);
+          gets(person[i].name);
+        
+      
+          printf("Age: ");
+          scanf("%d", &person[i].age);
+
+          printf("Salary: ");
+          scanf("%f", &person[i].salary);
+ 
+         printf("\n");
+       }
+        for (int i = 0; i < n; i++)
+       {
+         printf("person %d ", i + 1);
+         printf("person Name : %s \n", person[i].name);
+         printf("person Age : %d \n", person[i].age);
+         printf("person Salary : %3f \n", person[i].salary);
+     }
+ }
+(passing structure variable to function)--->
+use of display function.
+
+        #include <stdio.h>
+  
+        struct Person{
+        char name[100];
+        int age;
+        float salary;
+        };
+
+        void display(struct Person p){
+
+         printf("person Name : %s \n", p.name);
+         printf("person Age : %d \n", p.age);
+         printf("person Salary : %3f \n", p.salary);
+        }
+
+        int main(){
+            struct Person person1;
+            
+           strcpy(person1.name , "Sifat Ali");
+            person1.age = 27;
+            person1.salary = 12250.50;
+
+            display(person1);
+
+        }
+
+
+solution of:  #include <stdio.h>
+          struct{            
+          char *name;
+          }Per1,Per2;          
+
+         int main(){           
+        
+         Per1.name ="Xyz ab";
+         Per2.name ="Abc mn";
+
+        printf("%s\n",Per1.name);
+        printf("%s\n",Per2.name);
+    return 0;
+  }                  
+
+
